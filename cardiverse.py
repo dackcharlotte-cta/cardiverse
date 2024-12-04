@@ -65,19 +65,25 @@ def wait_for_completion(task_id, api_key, interval=10, timeout=300):
         time.sleep(interval)
         elapsed_time += interval
     raise TimeoutError("Task did not complete within the timeout period.")
+    
+
+def return_model(task_details): 
+    model_urls = task_details.get("model_urls", {})
+    thumbnail_url = task_details.get("thumbnail_url", "")
+    print(f"FBX URL: {model_urls.get('fbx')}")
+    print(f"OBJ URL: {model_urls.get('obj')}")
+    print(f"Thumbnail URL: {thumbnail_url}")
+
+    fbx_model = model_urls.get('fbx')
+    return fbx_model
+
 
 
 def main():
     try:
         task_id = create_task(image_data, api_key)
         task_details = wait_for_completion(task_id, api_key)
-        model_urls = task_details.get("model_urls", {})
-        thumbnail_url = task_details.get("thumbnail_url", "")
-
-        print(f"FBX URL: {model_urls.get('fbx')}")
-        print(f"OBJ URL: {model_urls.get('obj')}")
-        print(f"Thumbnail URL: {thumbnail_url}")
-
+        returned_model = return_model(task_details)
     except Exception as e:
         print(f"Error: {e}")
 

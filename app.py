@@ -1,9 +1,5 @@
-# render_template() is a helper function that lets you render
-# HTML template files that exist in the templates folder
 from flask import Flask, render_template, request, redirect, url_for, session
-# bring in the python code
-from test import main
-import secrets
+from cardiverse import main
 import secrets
 
 secret_key = secrets.token_hex(16) 
@@ -24,26 +20,28 @@ def index():
 @app.route('/', methods=['POST'])
 def index_post():
 
-    user_birthday = request.form['birthday']
-    user_name = request.form.get('name', 'Anonymous')  
+    recievers_name = request.form['recievers_name']
+    senders_name = request.form['senders_name']
+    #senders_name = request.form.get('name', 'Anonymous')  
 
-    found_birthday_song, found_lyrics, years_playlist, main_lyrics, gif_ids = main(user_birthday, user_name)
-    song_name, artists_name, released_date, song_uri = found_birthday_song
+    #found_birthday_song, found_lyrics, years_playlist, main_lyrics, gif_ids = main(user_birthday, user_name)
+    #song_name, artists_name, released_date, song_uri = found_birthday_song
+    session['recievers_name'] = recievers_name
+    session['senders_name'] = senders_name
 
-
-    results_data = {
-        'song_name': song_name,
-        'artists_name': artists_name,
-        'released_date': released_date,
-        'lyrics': found_lyrics,
-        'playlist_id': years_playlist,
-        'gif_ids': gif_ids,
-        'user_birthday': user_birthday,
-        'user_name': user_name,
+    #results_data = {
+        #'song_name': song_name,
+        #'artists_name': artists_name,
+        #'released_date': released_date,
+        #'lyrics': found_lyrics,
+        #'playlist_id': years_playlist,
+        #'gif_ids': gif_ids,
+        #'user_birthday': user_birthday,
+        #'user_name': user_name,
  
-    }
+    #}
 
-    session['results_data'] = results_data
+    #session['results_data'] = results_data
     return redirect(url_for('results_post'))
 
 #can i try make it go to loading page before results page???? which has the lyrics or gifs on before then? 
@@ -51,12 +49,10 @@ def index_post():
 
 
 @app.route('/results', methods = ['GET'])
-def results_post():
-	results_data = session.get('results_data', {})
-	return render_template('results.html', **results_data)
+def results_post(): 
+    results_data = {
+        'recievers_name': session.get('recievers_name', 'Unknown'),
+        'senders_name': session.get('senders_name', 'Anonymous'),
+    }
+    return render_template('results.html', **results_data)
 
-	
-
-#@app.route('/test/<api>') #learning how to make my own API!!! Is this how you create two factor auth? in attempt to make a results page
-#def results_post(api):
-	#return render_template('results.html', id=api)

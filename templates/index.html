@@ -13,30 +13,28 @@
 </head>
 </body>
 	<img src="{{url_for('static', filename='life_in_music.png')}}">
-	<h2> Discover the song released on your birthday through out the years! <h2>
-	<form method="POST">
-		<label>Birthday: </label> 
-		<!-- the double {} pulls the variable from our python script -->
-		<input name=birthday type="date" value={{birthday}}><br><br>
-		<label>Your Name:</label> 
-		<!-- the double {} pulls the variable from our python script -->
-		<input name=name type="text" value={{name}}><br><br>
-	  	<input type="submit" value="Submit"><br><br>
-	  	<form action="/action_page.php">
-		  <input type="file" id="myFile" name="filename">
-		<input type="submit">
-</form>
+	<h2> Create your own personlised webcard! <h2>
+
+	<form method="POST" action="/">
+		<label>Who is the card for: </label>
+		<input name=recievers_name type="text" value={{recievers_name}}><br><br>
+
+	  	<label>Who is it from: </label>
+		<input name=senders_name type="text" value={{senders_name}}><br><br>
+
+	  	<label for="occasions">What's the Occsasion:</label>
+	  	<select name="occasions" id="occasions">
+	  		<option value="" disabled selected>Select</option>
+		    <option value="Birthday">Birthday</option>
+		    <option value="Eid">Eid</option>
+		    <option value="Valentine">Valentine</option>
+		    <option value="Christmas">Christmas</option>
+		    <option value="Congraulations">Congraulations</option>
+	  	</select>
+	  	<br><br>
+	  	<input type="file" id="myFile" name="filename">
+	  	<input type="submit" value="Submit">
 	</form>
-
-	<p id="loading-message" style="display:none;">Searching...</p>
-	<h2> {{searching}}<h2> 
-	<script>
-	function showLoadingMessage() {
-	    document.getElementById("loading-message").style.display = "block";
-	}
-	</script>
-
-
 </body>
 </html>
 
