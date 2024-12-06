@@ -3,7 +3,7 @@ import json
 import time
 import base64
 import os
-import 
+
 
 meshy_credentials = "meshy_keys.json"
 with open(meshy_credentials, "r") as meshy_keys:
@@ -13,23 +13,30 @@ api_key = meshy_tokens['Authorization']
 
 def main():
     try:
+        image_data = image_pathway()
         task_id = create_task(image_data, api_key)
         task_details = wait_for_completion(task_id, api_key)
         returned_model = return_model(task_details)
     except Exception as e:
         print(f"Error: {e}")
 
+
 #image ---> base64
-def encode_image_to_base64(filename):
+def encode_image_to_base64(image_path):
     #path -----> image 
-    image_path = os.path.join(os.getcwd(), "static", "uploads", {filename}) 
-    base64_image = encode_image_to_base64(image_path)
-    print(image_path)
-
-    image_data = f"data:image/jpeg;base64,{base64_image}"
-
     with open(image_path, "rb") as img_file:
         return base64.b64encode(img_file.read()).decode('utf-8')
+
+
+def image_pathway():
+    #getting name of filename is there a better way??
+
+    image_path = os.path.join(os.getcwd(), "static", "uploads", "paddington.jpg") 
+    base64_image = encode_image_to_base64(image_path)
+
+    image_data = f"data:image/jpeg;base64,{base64_image}"
+    return image_data
+
 
 
 def create_task(image_data, api_key, enable_pbr=True, ai_model="meshy-4", target_polycount=30000):
@@ -86,7 +93,25 @@ def return_model(task_details):
     print(f"GLB URL: {model_urls.get('glb')}")
     print(f"Thumbnail URL: {thumbnail_url}")
 
+    
+
+    #trying to download image 
+    #creating path way to folder ---- 
+    model_dir = os.path.join(os.curdir, 'static', 'models')
+
+    #get model url for fbx 
     fbx_model = model_urls.get('fbx')
+    
+    model_path = os.path.join(model_dir, 'generated_model.fbx')
+
+
+    generated_image = requests.get(fbx_model).content 
+
+    with open(model_path, 'wb') as file:
+        file.write(fbx_model)
+
+    
+
     return fbx_model
 
 

@@ -3,6 +3,8 @@ from cardiverse import main
 import secrets
 import os 
 
+
+
 secret_key = secrets.token_hex(16) 
 
 app = Flask(__name__, '/static')
@@ -17,7 +19,12 @@ default_birthday ='1998-10-05'
 
 @app.route('/')
 def index():
-	return render_template('index.html')
+    users_image = request.files["filename"]
+    filename = users_image.filename
+    users_image.save(os.path.join("static", "uploads", filename))
+
+    return render_template('index.html')
+
 
 @app.route('/', methods=['POST'])
 def index_post():
@@ -48,6 +55,7 @@ def index_post():
 
     #session['results_data'] = results_data
     return redirect(url_for('results_post'))
+
 
 
 @app.route('/results', methods = ['GET'])
