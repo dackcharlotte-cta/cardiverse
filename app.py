@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from cardiverse import main
 import secrets
+import os 
 
 secret_key = secrets.token_hex(16) 
 
@@ -8,11 +9,12 @@ app = Flask(__name__, '/static')
 app.secret_key = secret_key
 app.config["DEBUG"] = True
 
+app.config['UPLOAD_FOLDER'] = "uploads"
+
 # give a default year since the get_tracks function now requires a year argument
 default_birthday ='1998-10-05'
 
-# when you go to the main url, it will render the index.html
-# that lives inside the templates folder
+
 @app.route('/')
 def index():
 	return render_template('index.html')
@@ -21,10 +23,14 @@ def index():
 def index_post():
     recievers_name = request.form['recievers_name']
     senders_name = request.form['senders_name']
-    #senders_name = request.form.get('name', 'Anonymous')  
+    users_image = request.files["filename"]
+    filename = users_image.filename
+    users_image.save(os.path.join("static", "uploads", filename))
 
-    #found_birthday_song, found_lyrics, years_playlist, main_lyrics, gif_ids = main(user_birthday, user_name)
-    #song_name, artists_name, released_date, song_uri = found_birthday_song
+    #senders_name = request.form.get('name', 'Anonymous')  
+    #print(users_image)
+    print(filename)
+ 
     session['recievers_name'] = recievers_name
     session['senders_name'] = senders_name
 
@@ -42,9 +48,6 @@ def index_post():
 
     #session['results_data'] = results_data
     return redirect(url_for('results_post'))
-
-#can i try make it go to loading page before results page???? which has the lyrics or gifs on before then? 
-#if results are in??? -- go to ... how would tell when it is loading
 
 
 @app.route('/results', methods = ['GET'])
