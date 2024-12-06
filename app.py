@@ -15,11 +15,10 @@ default_birthday ='1998-10-05'
 # that lives inside the templates folder
 @app.route('/')
 def index():
-	return render_template('index.html', birthday_song=[], city=default_birthday)
+	return render_template('index.html')
 
 @app.route('/', methods=['POST'])
 def index_post():
-
     recievers_name = request.form['recievers_name']
     senders_name = request.form['senders_name']
     #senders_name = request.form.get('name', 'Anonymous')  

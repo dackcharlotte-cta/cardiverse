@@ -72,6 +72,7 @@ def return_model(task_details):
     thumbnail_url = task_details.get("thumbnail_url", "")
     print(f"FBX URL: {model_urls.get('fbx')}")
     print(f"OBJ URL: {model_urls.get('obj')}")
+    print(f"GLB URL: {model_urls.get('glb')}")
     print(f"Thumbnail URL: {thumbnail_url}")
 
     fbx_model = model_urls.get('fbx')

@@ -6,6 +6,14 @@ body {
   background-color: #239ac2;
 }
 
+canvas {
+  display: block;  
+  width: 30%;
+  height: 400px;
+  margin: 20px auto;
+  padding: 0;
+}
+
 .birthdayCard {
   position: relative;
   width: 250px;
@@ -47,7 +55,6 @@ body {
   text-align: center;
   margin: 30px;
   transition: 0.1s;
-  
 }
 
 .balloons {
@@ -160,4 +167,12 @@ p {
   margin: 30px;
   outline-color: #333;
   outline-style: dotted;
+}
+
+/* New styles for the model-viewer element */
+#modelViewer {
+  width: 100%;          /* Makes the 3D model take the full width */
+  height: 400px;        /* Fixed height to avoid it stretching too much */
+  margin-top: 20px;     /* Adds space between the birthday card and model viewer */
+  background-color: #ececec;  /* Light gray background in case the model fails to load */
 }
