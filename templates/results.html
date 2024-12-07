@@ -1,74 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday Card</title>
-    <link rel="stylesheet" href="static/css/style_results.css">
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
-    <script type="importmap">
-    {
-      "imports": {
-        "three": "https://cdn.jsdelivr.net/npm/three@0.171.0/build/three.module.js",
-        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.171.0/examples/jsm/"
-      }
-    }
-  </script>
-    
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Card</title>
+  <link rel="stylesheet" href="static/css/style_results.css">
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 </head>
 <body>
-    <div class="birthdayCard">
-        <div class="cardFront">
-            <div class="happy">Happy Birthday!</div>
-            <div class="balloons">
-                <div class="balloon-1"></div>
-                <div class="balloon-2"></div>
-                <div class="balloon-3"></div>
-                <div class="balloon-4"></div>
-            </div>
-        </div>
-        <div class="cardInside">
-            
-    </script>
-	    	
-            <p>Hope you have an amazing day!</p>
-        </div>
-    </div>
-
-
-    <script type="module">
-        import * as THREE from 'three';
-
-        // Create scene
-        const scene = new THREE.Scene();
-
-        // Create camera
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 5;
-
-        // Create renderer
-        const renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
-
-        // Create cube geometry and material
-        const geometry = new THREE.BoxGeometry(1, 1, 1);
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-        const cube = new THREE.Mesh(geometry, material);
-        scene.add(cube);
-
-        // Animation loop
-        function animate() {
-            requestAnimationFrame(animate);
-
-            // Rotate the cube for some movement
-            cube.rotation.x += 0.01;
-            cube.rotation.y += 0.01;
-
-            renderer.render(scene, camera);
-        }
-
-        animate();
+  <div class="birthdayCard">
+      <div class="cardFront">
+          <div class="happy">Happy Birthday!</div>
+          <div class="balloons">
+              <!-- ... balloons ... -->
+          </div>
+      </div>
+      <div class="cardInside">
+          <p>Hope you have an amazing day!</p>
+          <model-viewer src="static/models/model.glb"  alt="Astronaut Model" 
+              ar ar-modes="webxr scene-viewer quick-look" camera-controls 
+              shadow-intensity="1" environment-image="neutral" poster="poster.jpg">
+          </model-viewer>
+      </div>
+  </div>
 </body>
 </html>

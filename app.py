@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from cardiverse import main
 import secrets
 import os 
+from cardiverse import main
 
 
 
@@ -19,10 +19,6 @@ default_birthday ='1998-10-05'
 
 @app.route('/')
 def index():
-    users_image = request.files["filename"]
-    filename = users_image.filename
-    users_image.save(os.path.join("static", "uploads", filename))
-
     return render_template('index.html')
 
 
@@ -34,7 +30,7 @@ def index_post():
     filename = users_image.filename
     users_image.save(os.path.join("static", "uploads", filename))
 
-    users_filename = image_pathway(filename)
+    model_url = main(filename)
     
  
     session['recievers_name'] = recievers_name

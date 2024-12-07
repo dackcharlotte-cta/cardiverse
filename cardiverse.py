@@ -2,8 +2,11 @@ import requests
 import json
 import time
 import base64
+import urllib.request
 import os
 from flask import session 
+import json
+import datetime
 
 
 
@@ -13,9 +16,9 @@ with open(meshy_credentials, "r") as meshy_keys:
 
 api_key = meshy_tokens['Authorization']
 
-def main(users_filename):
+def main(filename):
     try:
-        image_data = image_pathway(users_filename)
+        image_data = image_pathway(filename)
         task_id = create_task(image_data, api_key)
         task_details = wait_for_completion(task_id, api_key)
         returned_model = return_model(task_details)
@@ -29,10 +32,10 @@ def encode_image_to_base64(image_path):
         return base64.b64encode(img_file.read()).decode('utf-8')
 
 
-def image_pathway(users_filename):
+def image_pathway(filename):
     #getting name of filename is there a better way??
 
-    image_path = os.path.join(os.getcwd(), "static", "uploads", users_filename) 
+    image_path = os.path.join(os.getcwd(), "static", "uploads", filename) 
     base64_image = encode_image_to_base64(image_path)
 
     image_data = f"data:image/jpeg;base64,{base64_image}"
@@ -87,34 +90,59 @@ def wait_for_completion(task_id, api_key, interval=10, timeout=300):
     
 
 def return_model(task_details): 
-    model_urls = task_details.get("model_urls", {})
-    thumbnail_url = task_details.get("thumbnail_url", "")
-    print(f"FBX URL: {model_urls.get('fbx')}")
-    print(f"OBJ URL: {model_urls.get('obj')}")
+    #model_urls = task_details.get("model_urls", {})
+    #thumbnail_url = task_details.get("thumbnail_url", "")
+    #print(f"FBX URL: {model_urls.get('fbx')}")
+    #print(f"OBJ URL: {model_urls.get('obj')}")
     print(f"GLB URL: {model_urls.get('glb')}")
-    print(f"Thumbnail URL: {thumbnail_url}")
+    #print(f"Thumbnail URL: {thumbnail_url}")
 
-    
+    print(task_details)
 
     #trying to download image 
-    #creating path way to folder ---- 
-    model_dir = os.path.join(os.curdir, 'static', 'models')
+    #data into json 
+    json_response = json.loads(task_details.model_dump_json())
+    print(json_response)
+
+    fbx_model_url = model_urls.get('glb')
+
+    #route to save 
+    image_dir = os.path.join(os.curdir, 'static', 'models')
+    
+    if not os.path.isdir(image_dir):
+        os.mkdir(image_dir)
+    #my image path, name of the foldere +, plus file name
+    date_now = str(datetime.datetime.now())
+    date_now = date_now.replace('.', '_').replace(':', '_')
+
+    image_path = os.path.join(image_dir, 'model' + date_now +'.glb') 
+    #if you want to have to save image over the time, you can add a counter, maybe by getting date
+    #image_url = json_repsonse['data'][0]['url']
+
+    #generate the image, gives you a URL for image not the actual image
+    generate_image = requests.get(fbx_model_url).content 
+
+    #save image in folder
+    #wb = write to binary 
+    with open(image_path, 'wb') as file: 
+        file.write(generate_image) 
+
+
+    #trying to download image #creating path way to folder ---- model_dir = os.path.join(os.curdir, 'static', 'models')
 
     #get model url for fbx 
-    fbx_model = model_urls.get('fbx')
-    
-    model_path = os.path.join(model_dir, 'generated_model.fbx')
+    fbx_model_url = model_urls.get('glb') 
+    got_url_file = urllib.request.urlretrieve(fbx_model_url, "model1.glb")
 
+    response = requests.get(fbx_model_url, stream=True)
 
-    generated_image = requests.get(fbx_model).content 
+    model_path = os.path.join(model_dir, 'model.glb')
 
-    with open(model_path, 'wb') as file:
+    with open(model_path, 'wb') as file: 
         file.write(fbx_model)
 
-    
-
-    return fbx_model
+    return generated_model.fbx
 
 
-if __name__ == "__main__":
-    main()
+
+#main()
