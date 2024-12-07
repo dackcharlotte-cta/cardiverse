@@ -34,12 +34,13 @@ def index_post():
     filename = users_image.filename
     users_image.save(os.path.join("static", "uploads", filename))
 
-    #senders_name = request.form.get('name', 'Anonymous')  
-    #print(users_image)
-    print(filename)
+    users_filename = image_pathway(filename)
+    
  
     session['recievers_name'] = recievers_name
     session['senders_name'] = senders_name
+    session['filename'] = filename  
+
 
     #results_data = {
         #'song_name': song_name,

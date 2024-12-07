@@ -3,6 +3,8 @@ import json
 import time
 import base64
 import os
+from flask import session 
+
 
 
 meshy_credentials = "meshy_keys.json"
@@ -11,15 +13,14 @@ with open(meshy_credentials, "r") as meshy_keys:
 
 api_key = meshy_tokens['Authorization']
 
-def main():
+def main(users_filename):
     try:
-        image_data = image_pathway()
+        image_data = image_pathway(users_filename)
         task_id = create_task(image_data, api_key)
         task_details = wait_for_completion(task_id, api_key)
         returned_model = return_model(task_details)
     except Exception as e:
         print(f"Error: {e}")
-
 
 #image ---> base64
 def encode_image_to_base64(image_path):
@@ -28,10 +29,10 @@ def encode_image_to_base64(image_path):
         return base64.b64encode(img_file.read()).decode('utf-8')
 
 
-def image_pathway():
+def image_pathway(users_filename):
     #getting name of filename is there a better way??
 
-    image_path = os.path.join(os.getcwd(), "static", "uploads", "paddington.jpg") 
+    image_path = os.path.join(os.getcwd(), "static", "uploads", users_filename) 
     base64_image = encode_image_to_base64(image_path)
 
     image_data = f"data:image/jpeg;base64,{base64_image}"
