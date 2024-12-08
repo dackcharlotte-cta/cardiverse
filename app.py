@@ -30,7 +30,7 @@ def index_post():
     filename = users_image.filename
     users_image.save(os.path.join("static", "uploads", filename))
 
-    model_url = main(filename)
+    modelname = main(filename)
     
  
     session['recievers_name'] = recievers_name
@@ -51,15 +51,21 @@ def index_post():
     #}
 
     #session['results_data'] = results_data
-    return redirect(url_for('results_post'))
+    print(modelname)
+    return redirect(url_for('results_post', modelname=modelname, recievers_name=recievers_name))
 
 
 
 @app.route('/results', methods = ['GET'])
 def results_post(): 
+    modelname = request.args.get('modelname')
+    recievers_name = request.args.get('recievers_name')
     results_data = {
-        'recievers_name': session.get('recievers_name', 'Unknown'),
+        'recievers_name': recievers_name,
         'senders_name': session.get('senders_name', 'Anonymous'),
+        'generated_model_name': modelname
     }
+
+    session['results_data'] = results_data
     return render_template('results.html', **results_data)
 
