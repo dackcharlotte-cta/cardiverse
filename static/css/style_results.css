@@ -16,8 +16,8 @@ canvas {
 
 .birthdayCard {
   position: relative;
-  width: 250px;
-  height: 350px;
+  width: 500px;
+  height: 700px;
   cursor: pointer;
   transform-style: preserve-3d;
   transform: perspective(2500px);
@@ -41,8 +41,8 @@ canvas {
 .cardFront {
   position: relative;
   background-color: #fff;
-  width: 250px;
-  height: 350px;
+  width: 500px;
+  height: 700px;
   overflow: hidden;
   transform-origin: left;
   box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2),
@@ -139,8 +139,8 @@ canvas {
 .cardInside {
   position: absolute;
   background-color: #fff;
-  width: 250px;
-  height: 350px;
+  width: 500px;
+  height: 700px;
   z-index: -1;
   left: 0;
   top: 0;
@@ -169,10 +169,22 @@ p {
   outline-style: dotted;
 }
 
-/* New styles for the model-viewer element */
+
 #modelViewer {
-  width: 100%;          /* Makes the 3D model take the full width */
-  height: 400px;        /* Fixed height to avoid it stretching too much */
-  margin-top: 20px;     /* Adds space between the birthday card and model viewer */
-  background-color: #ececec;  /* Light gray background in case the model fails to load */
+  width: 100%;          
+  height: 700px;        
+  margin-top: 20px;     
+  background-color: #ececec;  
+}
+
+/* helper to center elements */
+.center {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 }

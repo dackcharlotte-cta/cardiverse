@@ -10,17 +10,19 @@
 <body>
   <div class="birthdayCard">
       <div class="cardFront">
-          <div class="happy">Happy Birthday!</div>
+          <div class="happy">Happy Birthday {{recievers_name}}!</div>
           <div class="balloons">
               <!-- ... balloons ... -->
           </div>
       </div>
       <div class="cardInside">
+        <p>Dear {{recievers_name}},</p>
           <p>Hope you have an amazing day!</p>
           <model-viewer src="static/models/{{ generated_model_name }}.glb" alt="Astronaut Model" 
               ar ar-modes="webxr scene-viewer quick-look" camera-controls 
               shadow-intensity="1" environment-image="neutral" poster="poster.jpg">
           </model-viewer>
+          <p>Love {{senders_name}}</p>
       </div>
   </div>
 </body>

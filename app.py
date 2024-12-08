@@ -19,11 +19,16 @@ default_birthday ='1998-10-05'
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    isLoading = False
+    data = {
+        'isLoading': isLoading,
+    }
+    return render_template('index.html', **data)
 
 
 @app.route('/', methods=['POST'])
 def index_post():
+    isLoading = True
     recievers_name = request.form['recievers_name']
     senders_name = request.form['senders_name']
     users_image = request.files["filename"]
@@ -32,10 +37,12 @@ def index_post():
 
     modelname = main(filename)
     
- 
+    isLoading = False
+
     session['recievers_name'] = recievers_name
     session['senders_name'] = senders_name
     session['filename'] = filename  
+    session['isLoading'] = isLoading  
 
 
     #results_data = {
@@ -52,7 +59,7 @@ def index_post():
 
     #session['results_data'] = results_data
     print(modelname)
-    return redirect(url_for('results_post', modelname=modelname, recievers_name=recievers_name))
+    return redirect(url_for('results_post', modelname=modelname, recievers_name=recievers_name, senders_name=senders_name))
 
 
 
@@ -60,12 +67,13 @@ def index_post():
 def results_post(): 
     modelname = request.args.get('modelname')
     recievers_name = request.args.get('recievers_name')
+    senders_name = request.args.get('senders_name')
     results_data = {
         'recievers_name': recievers_name,
-        'senders_name': session.get('senders_name', 'Anonymous'),
+        'senders_name': senders_name,
         'generated_model_name': modelname
     }
 
     session['results_data'] = results_data
     return render_template('results.html', **results_data)
-
+    

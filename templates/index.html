@@ -19,6 +19,12 @@
   </script>
 </head>
 <body>
+	<script type="text/javascript">// <![CDATA[
+        function loading(){
+            $("#loader").show();
+            $("#content").hide();       
+        }
+// ]]></script>
 	<!-- <script type="module">
         import * as THREE from 'three';
 
@@ -55,8 +61,11 @@
 	</script> -->
 	
 
-	<h2>Create your own personalised webcard!</h2>
-
+<div class="loader" id="loader">
+		<h2>Loading!</h2>
+</div>
+<div id="content" >
+		<h2>Create your own personalised webcard!</h2>
 	<form method="POST" action="/" enctype=multipart/form-data>
 		<label>Who is the card for: </label>
 		<input name="recievers_name" type="text" value="{{ recievers_name }}"><br><br>
@@ -75,7 +84,8 @@
 	  	</select>
 	  	<br><br>
 	  	<input type="file" id="myFile" name="filename">
-	  	<input type="submit" value="Submit">
+	  	<input type="submit" value="Submit" onclick="loading()">
 	</form>
+	<div>
 </body>
 </html>
