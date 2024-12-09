@@ -31,11 +31,13 @@ def index_post():
     isLoading = True
     recievers_name = request.form['recievers_name']
     senders_name = request.form['senders_name']
+    #user_message = request.form['message']
     users_image = request.files["filename"]
     filename = users_image.filename
     users_image.save(os.path.join("static", "uploads", filename))
 
     modelname = main(filename)
+    #chatbot_response = message_for_r(user_message, recievers_name)
     
     isLoading = False
 
@@ -44,6 +46,7 @@ def index_post():
     session['filename'] = filename  
     session['isLoading'] = isLoading  
 
+    
 
     #results_data = {
         #'song_name': song_name,

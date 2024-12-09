@@ -11,13 +11,26 @@
   <div class="birthdayCard">
       <div class="cardFront">
           <div class="happy">Happy Birthday {{recievers_name}}!</div>
-          <div class="balloons">
-              <!-- ... balloons ... -->
-          </div>
-      </div>
+          <div class="birthday-gift">
+      <div class="gift">
+      <input id='click' type='checkbox'>
+      <label class='click' for='click'></label>
+      <div class="wishes">Happy Birthday!</div>
+           <div class="sparkles">
+          <div class="spark1"></div>
+          <div class="spark2"></div>
+          <div class="spark3"></div>
+          <div class="spark4"></div>
+          <div class="spark5"></div>
+          <div class="spark6"></div>
+        </div>
+        </div>
+        </div>
+        </div>
+
       <div class="cardInside">
         <p>Dear {{recievers_name}},</p>
-          <p>Hope you have an amazing day!</p>
+          <p>{{chatbot_response}}</p>
           <model-viewer src="static/models/{{ generated_model_name }}.glb" alt="Astronaut Model" 
               ar ar-modes="webxr scene-viewer quick-look" camera-controls 
               shadow-intensity="1" environment-image="neutral" poster="poster.jpg">
