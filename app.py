@@ -47,7 +47,6 @@ def index_post():
     poembot_response = get_poem(user_message, recievers_name, occasions)
     bot_poem = poembot_response.split('-')[0]
     bot_prompt = poembot_response.split('-')[1]
-
     #getting my name of the image from my dalle.py whilst sending arg 
     image_name = get_image(bot_prompt)
     isLoading = False
@@ -56,8 +55,9 @@ def index_post():
     session['senders_name'] = senders_name
     session['filename'] = filename  
     session['isLoading'] = isLoading  
+    session['bot_poem'] = bot_poem
 
-    
+    print(bot_poem)
 
     #results_data = {
         #'song_name': song_name,
@@ -82,10 +82,12 @@ def results_post():
     modelname = request.args.get('modelname')
     recievers_name = request.args.get('recievers_name')
     senders_name = request.args.get('senders_name')
+    bot_poem = request.args.get('bot_poem')
     results_data = {
         'recievers_name': recievers_name,
         'senders_name': senders_name,
-        'generated_model_name': modelname
+        'generated_model_name': modelname,
+        'bot_poem' : bot_poem
     }
 
     session['results_data'] = results_data

@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Birthday Card</title>
-  <link rel="stylesheet" href="static/css/style_results.css">
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Card</title>
+<link rel="stylesheet" href="static/css/style_results.css">
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 </head>
 <body>
-  <div class="birthdayCard">
-      <div class="cardFront">
-          <div class="happy">Happy Birthday {{recievers_name}}!</div>
-          <div class="birthday-gift">
+<div class="birthdayCard">
+  <div class="cardFront">
+    <div class="happy">{{bot_poem}}!</div>
+
+    <div class="birthday-gift">
       <div class="gift">
-      <input id='click' type='checkbox'>
-      <label class='click' for='click'></label>
-      <div class="wishes">Happy Birthday!</div>
-           <div class="sparkles">
+        <input id='click' type='checkbox'>
+        <label class='click' for='click'></label>
+        <div class="wishes">Happy Birthday, {{recievers_name}}</div>
+        <div class="sparkles">
           <div class="spark1"></div>
           <div class="spark2"></div>
           <div class="spark3"></div>
@@ -24,19 +25,35 @@
           <div class="spark5"></div>
           <div class="spark6"></div>
         </div>
-        </div>
-        </div>
-        </div>
-
-      <div class="cardInside">
-        <p>Dear {{recievers_name}},</p>
-          <p>{{chatbot_response}}</p>
-          <model-viewer src="static/models/{{ generated_model_name }}.glb" alt="Astronaut Model" 
-              ar ar-modes="webxr scene-viewer quick-look" camera-controls 
-              shadow-intensity="1" environment-image="neutral" poster="poster.jpg">
-          </model-viewer>
-          <p>Love {{senders_name}}</p>
       </div>
+    </div>
   </div>
+
+  <div class="cardInside">
+    <p>Dear {{recievers_name}},</p>
+    <p>{{chatbot_response}}</p>
+    <model-viewer src="static/models/{{ generated_model_name }}.glb" alt="Astronaut Model" 
+      ar ar-modes="webxr scene-viewer quick-look" camera-controls 
+      shadow-intensity="1" environment-image="neutral" poster="poster.jpg">
+    </model-viewer>
+    <p>Love {{senders_name}}</p>
+  </div>
+</div>
+
+<script>
+  const birthdayCard = document.querySelector('.birthdayCard');
+  const clickCheckbox = document.getElementById('click');
+  const sparkles = document.querySelector('.sparkles');
+  const wishes = document.querySelector('.wishes');
+
+  birthdayCard.addEventListener('mouseover', function() {
+    clickCheckbox.checked = true;
+    sparkles.classList.add('show');
+    setTimeout(function() {
+      birthdayCard.classList.add('open');
+      wishes.classList.add('show');
+    }, 1000); // Delay of 1 second 
+  });
+</script>
 </body>
 </html>
