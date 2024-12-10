@@ -42,18 +42,33 @@
 
 <script>
   const birthdayCard = document.querySelector('.birthdayCard');
-  const clickCheckbox = document.getElementById('click');
-  const sparkles = document.querySelector('.sparkles');
-  const wishes = document.querySelector('.wishes');
+const clickCheckbox = document.getElementById('click');
+const sparkles = document.querySelector('.sparkles');
+const wishes = document.querySelector('.wishes');
+const confettiContainer = document.createElement('div');
+confettiContainer.classList.add('confetti-container');
+birthdayCard.appendChild(confettiContainer);
 
-  birthdayCard.addEventListener('mouseover', function() {
-    clickCheckbox.checked = true;
-    sparkles.classList.add('show');
-    setTimeout(function() {
-      birthdayCard.classList.add('open');
-      wishes.classList.add('show');
-    }, 1000); // Delay of 1 second 
-  });
+function createConfetti() {
+const confetti = document.createElement('div');
+confetti.classList.add('confetti');
+confetti.style.left = Math.random() * window.innerWidth + 'px';
+confettiContainer.appendChild(confetti);
+setTimeout(() => confetti.remove(), 2000);
+}
+
+birthdayCard.addEventListener('mouseover', function() {
+clickCheckbox.checked = true;
+sparkles.classList.add('show');
+setTimeout(function() {
+  birthdayCard.classList.add('open');
+  wishes.classList.add('show');
+  // Trigger the confetti animation when the gift opens
+  for (let i = 0; i < 50; i++) {
+    setTimeout(createConfetti, i * 50);
+  }
+}, 1000); // Delay of 1 second
+});
 </script>
 </body>
 </html>

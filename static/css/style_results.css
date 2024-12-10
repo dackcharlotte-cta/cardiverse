@@ -356,3 +356,26 @@ margin: 0;
 background-color: #ececec;
 display: block;
 }
+
+/* Confetti styles */
+.confetti {
+position: absolute;
+width: 10px;
+height: 10px;
+background-color: #ffb300;
+border-radius: 50%;
+animation: confetti 2s ease-in-out infinite;
+opacity: 0;
+z-index: 10;
+}
+
+@keyframes confetti {
+0% {
+  transform: translateY(0) rotate(0);
+  opacity: 1;
+}
+100% {
+  transform: translateY(500px) rotate(360deg);
+  opacity: 0;
+}
+}
