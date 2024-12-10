@@ -10,10 +10,10 @@ client = AzureOpenAI(
 )
 
 messages = [
-	{"role": "system", "content": "Respone to as a poem"}
+		{"role": "system", "content": f"Respone using the {user_message} as inspirations to create a poem about {recievers_name}"}
 ]
 
-def message_for_r(user_message, recievers_name):
+def get_music_for_r(user_message, recievers_name):
 	url = f"https://api.coingecko.com/api/v3/coins/markets?vs_currency={fiat_currency}"
 	response = requests.get(url)
 	print(url)
@@ -27,8 +27,8 @@ functions = [
 	{
 		"type": "function",
 		"function": {
-			"name": "get_crypto_price",
-			"description" : "Gets prices of crypto currency in a specified fiat currency", 
+			"name": "get_music_for_r",
+			"description" : "Gets music that is inspired by users input", 
 			"parameters": {
 			#letting chat - gbt know that its getting 
 			#key value pairs 
@@ -76,7 +76,7 @@ def ask_question(user_question):
 		#need to give the Who wants to be a millionaire team the phone number 
 		#set up a 'phonebook' , if we see a funcation name, we need to tell our code which function to call 
 		available_functions = {
-		"get_crypto_price" : crypto_price
+		"get_music_for_r" : music_for_r
 		}
 
 		messages.append(response_message)

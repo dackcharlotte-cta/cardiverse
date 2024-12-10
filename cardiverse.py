@@ -116,7 +116,7 @@ def return_model(task_details):
     if not os.path.isdir(image_dir):
         print('not statement: cardiverse.py 115 ')
         os.mkdir(image_dir)
-    #my image path, name of the foldere +, plus file name
+    #counter 
     date_now = str(datetime.datetime.now())
     date_now = date_now.replace('.', '_').replace(':', '_')
 

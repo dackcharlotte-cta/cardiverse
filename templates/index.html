@@ -17,7 +17,6 @@
         "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.171.0/examples/jsm/"
       }
     }
-
   </script>
 </head>
 <body>
@@ -27,67 +26,64 @@
             $("#content").hide();       
         }
 // ]]></script>
-	<!-- <script type="module">
-        import * as THREE from 'three';
-
-       
-        const scene = new THREE.Scene();
-
-    
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 5;
-
-       
-        const renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
-
-
-        const geometry = new THREE.BoxGeometry(1, 1, 1);
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-        const cube = new THREE.Mesh(geometry, material);
-        scene.add(cube);
-
-     
-        function animate() {
-            requestAnimationFrame(animate);
-
-            
-            cube.rotation.x += 0.01;
-            cube.rotation.y += 0.01;
-
-            renderer.render(scene, camera);
-        }
-
-        animate();
-	</script> -->
-	
 
 <div class="loader" id="loader">
-		<h2>Loading!</h2>
+    <main>
+        <div class="tower">
+            <div class="tower__group">
+                <!-- (Include the entire tower animation structure here) -->
+                <div class="tower__brick-layer tower__brick-layer--4">
+                    <!-- Example brick in the tower (repeat for all layers) -->
+                    <div class="tower__brick tower__brick--0">
+                        <div class="tower__brick-side"></div>
+                        <div class="tower__brick-side"></div>
+                        <div class="tower__brick-side"></div>
+                        <div class="tower__brick-side"></div>
+                        <div class="tower__brick-stud"></div>
+                        <div class="tower__brick-stud"></div>
+                    </div>
+                    <!-- Add the rest of the layers as required -->
+                </div>
+            </div>
+        </div>
+        <div class="message">
+            <p class="message__line">Loading…</p>
+            <p class="message__line">Sorting out the pieces…</p>
+            <p class="message__line">Assembling one brick at a time…</p>
+            <p class="message__line">Following every step…</p>
+            <p class="message__line">Being very careful not to step on the pieces…</p>
+            <p class="message__line">Trying not to get finger blisters…</p>
+            <p class="message__line">Might take longer to build than the Death Star…</p>
+            <p class="message__line">Wrapping it up…</p>
+        </div>
+    </main>
 </div>
-<div id="content" >
-		<h2>Create your own personalised webcard!</h2>
-	<form method="POST" action="/" enctype=multipart/form-data>
-		<label>Who is the card for: </label>
-		<input name="recievers_name" type="text" value="{{ recievers_name }}"><br><br>
 
-	  	<label>Who is it from: </label>
-		<input name="senders_name" type="text" value="{{ senders_name }}"><br><br>
+<div id="content">
+    <h2>Create your own personalised webcard!</h2>
+    <form method="POST" action="/" enctype=multipart/form-data>
+        <label>Who is the card for: </label>
+        <input name="recievers_name" type="text" value="{{ recievers_name }}"><br><br>
 
-	  	<label for="occasions">What's the Occasion:</label>
-	  	<select name="occasions" id="occasions">
-	  		<option value="" disabled selected>Select</option>
-		    <option value="Birthday">Birthday</option>
-		    <option value="Eid">Eid</option>
-		    <option value="Valentine">Valentine</option>
-		    <option value="Christmas">Christmas</option>
-		    <option value="Congratulation">Congratulation</option>
-	  	</select>
-	  	<br><br>
-	  	<input type="file" id="myFile" name="filename">
-	  	<input type="submit" value="Submit" onclick="loading()">
-	</form>
-	<div>
+        <label>Who is it from: </label>
+        <input name="senders_name" type="text" value="{{ senders_name }}"><br><br>
+
+        <label>Description of person (include hobbies etc): </label>
+        <input name="user_message" type="text" value="{{ user_message }}"><br><br>
+
+        <label for="occasions">What's the Occasion:</label>
+        <select name="occasions" id="occasions">
+            <option value="" disabled selected>Select</option>
+            <option value="Birthday">Birthday</option>
+            <option value="Eid">Eid</option>
+            <option value="Valentine">Valentine</option>
+            <option value="Christmas">Christmas</option>
+            <option value="Congratulation">Congratulation</option>
+        </select>
+        <br><br>
+        <input type="file" id="myFile" name="filename">
+        <input type="submit" value="Submit" onclick="loading()">
+    </form>
+</div>
 </body>
 </html>

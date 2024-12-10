@@ -1,30 +1,31 @@
-
 body {
-    font-family: "Courier New", Courier, monospace; 
-    background-color: #002B36; 
-    color: #00FF7F; 
+    font-family: "Courier New", Courier, monospace;
+    background-color: #002B36;
+    color: #00FF7F;
     margin: 0;
     padding: 20px;
-    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    text-align: center;  /* This is optional with flexbox */
 }
 
 h1 {
     font-size: 3rem;
     text-transform: uppercase;
-    text-shadow: 0 0 5px #00FF7F, 0 0 10px #00FF7F; 
+    text-shadow: 0 0 5px #00FF7F, 0 0 10px #00FF7F;
     color: #00FF7F;
     margin: 20px 0;
-    animation: flicker 1.5s infinite alternate; 
+    animation: flicker 1.5s infinite alternate;
 }
 
 p {
     font-size: 1.2rem;
-    color: #00FA9A; 
+    color: #00FA9A;
     text-shadow: 0 0 3px #00FA9A;
+    font-family: "Brush Script MT", cursive;
+    margin: 40px;
 }
 
 button {
@@ -33,7 +34,7 @@ button {
     color: #002B36;
     background-color: #00FF7F;
     border: 2px solid #00FA9A;
-    border-radius: 5px; 
+    border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
     text-transform: uppercase;
@@ -43,13 +44,13 @@ button {
 
 button:hover {
     background-color: #00FA9A;
-    transform: scale(1.1);
+    transform: scale(1.05);  /* Slightly smaller scale for subtle effect */
 }
 
 a {
     color: #00FF7F;
     text-decoration: none;
-    border-bottom: 1px dashed #00FF7F; 
+    border-bottom: 1px dashed #00FF7F;
 }
 
 a:hover {
@@ -58,7 +59,7 @@ a:hover {
 }
 
 .music-container {
-    background-color: #003B46; 
+    background-color: #003B46;
     border: 3px solid #00FA9A;
     padding: 20px;
     max-width: 600px;
@@ -74,13 +75,11 @@ a:hover {
     box-shadow: 0 0 10px #00FF7F;
 }
 
-
 @keyframes flicker {
     0% { opacity: 1; }
     50% { opacity: 0.8; }
     100% { opacity: 1; }
 }
-
 
 .blink {
     display: inline-block;
@@ -96,204 +95,189 @@ a:hover {
     100% { opacity: 1; }
 }
 
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #239ac2;
-}
-
 .birthdayCard {
-  position: relative;
-  width: 250px;
-  height: 350px;
-  cursor: pointer;
-  transform-style: preserve-3d;
-  transform: perspective(2500px);
-  transition: 1s;
+    position: relative;
+    width: 250px;
+    height: 350px;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transform: perspective(2500px);
+    transition: 1s;
 }
 
 .birthdayCard:hover {
-  transform: perspective(2500px) rotate(5deg);
-  box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2),
-    0 10px 100px rgba(0, 0, 0, 0.5);
+    transform: perspective(2500px) rotate(5deg);
+    box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2), 0 10px 100px rgba(0, 0, 0, 0.5);
 }
 
 .birthdayCard:hover .cardFront {
-  transform: rotateY(-160deg);
+    transform: rotateY(-160deg);
 }
 
 .birthdayCard:hover .happy {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 .cardFront {
-  position: relative;
-  background-color: #fff;
-  width: 250px;
-  height: 350px;
-  overflow: hidden;
-  transform-origin: left;
-  box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2),
-    30px 0 50px rgba(0, 0, 0, 0.4);
-  transition: 0.6s;
+    position: relative;
+    background-color: #fff;
+    width: 250px;
+    height: 350px;
+    overflow: hidden;
+    transform-origin: left;
+    box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2), 30px 0 50px rgba(0, 0, 0, 0.4);
+    transition: 0.6s;
 }
 
 .happy {
-  font-family: Tahoma, sans-serif;
-  text-align: center;
-  margin: 30px;
-  background-image: linear-gradient(120deg, #ffd856 0%, #f98c6e 100%);
-  transition: 0.1s;
+    font-family: Tahoma, sans-serif;
+    text-align: center;
+    margin: 30px;
+    background-image: linear-gradient(120deg, #ffd856 0%, #f98c6e 100%);
+    transition: 0.1s;
 }
 
 .balloons {
-  position: absolute;
+    position: absolute;
 }
 
 .balloon-1,
 .balloon-2,
 .balloon-3,
 .balloon-4 {
-  position: absolute;
-  width: 85px;
-  height: 95px;
-  border-radius: 50%;
+    position: absolute;
+    width: 85px;
+    height: 95px;
+    border-radius: 50%;
 }
 
 .balloon-1 {
-  background-color: rgba(255, 40, 90, 0.7);
-  left: -10px;
-  top: 50px;
+    background-color: rgba(255, 40, 90, 0.7);
+    left: -10px;
+    top: 50px;
 }
 
 .balloon-2 {
-  background-color: rgba(9, 215, 160, 0.7);
-  left: 50px;
-  top: 20px;
+    background-color: rgba(9, 215, 160, 0.7);
+    left: 50px;
+    top: 20px;
 }
 
 .balloon-3 {
-  background-color: rgba(255, 186, 26, 0.7);
-  left: 110px;
-  top: 50px;
+    background-color: rgba(255, 186, 26, 0.7);
+    left: 110px;
+    top: 50px;
 }
 
 .balloon-4 {
-  background-color: rgba(12, 122, 159, 0.7);
-  left: 170px;
-  top: 50px;
+    background-color: rgba(12, 122, 159, 0.7);
+    left: 170px;
+    top: 50px;
 }
 
 .balloon-1::before,
 .balloon-2::before,
 .balloon-3::before,
 .balloon-4::before {
-  content: "";
-  position: absolute;
-  width: 1px;
-  height: 155px;
-  background-color: #ffc848;
-  top: 95px;
-  left: 43px;
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 155px;
+    background-color: #ffc848;
+    top: 95px;
+    left: 43px;
 }
 
 .balloon-1::after,
 .balloon-2::after,
 .balloon-3::after,
 .balloon-4::after {
-  content: "";
-  position: absolute;
-  border-right: 7px solid transparent;
-  border-left: 7px solid transparent;
-  top: 94px;
-  left: 37px;
+    content: "";
+    position: absolute;
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+    top: 94px;
+    left: 37px;
 }
 
 .balloon-1::after {
-  border-bottom: 10px solid #ff3e6b;
+    border-bottom: 10px solid #ff3e6b;
 }
 
 .balloon-2::after {
-  border-bottom: 10px solid #04b183;
+    border-bottom: 10px solid #04b183;
 }
 
 .balloon-3::after {
-  border-bottom: 10px solid #ffc94c;
+    border-bottom: 10px solid #ffc94c;
 }
 
 .balloon-4::after {
-  border-bottom: 10px solid #13a9bd;
+    border-bottom: 10px solid #13a9bd;
 }
 
 .cardInside {
-  position: absolute;
-  background-color: #fff;
-  width: 250px;
-  height: 350px;
-  z-index: -1;
-  left: 0;
-  top: 0;
-  box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2);
-}
-
-p {
-  font-family: "Brush Script MT", cursive;
-  margin: 40px;
-  color: #333;
+    position: absolute;
+    background-color: #fff;
+    width: 250px;
+    height: 350px;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2);
 }
 
 .name {
-  position: absolute;
-  left: 150px;
-  top: 200px;
-  color: #333;
+    position: absolute;
+    left: 150px;
+    top: 200px;
+    color: #333;
 }
 
 .back {
-  font-family: Tahoma, sans-serif;
-  color: #333;
-  text-align: center;
-  margin: 30px;
-  outline-color: #333;
-  outline-style: dotted;
+    font-family: Tahoma, sans-serif;
+    color: #333;
+    text-align: center;
+    margin: 30px;
+    outline-color: #333;
+    outline-style: dotted;
 }
-/* outer part */
+
+/* Outer part of loader */
 .loader {
     width: 100px;
     height: 100px;
     background: #fff;
-    border: solid;
+    border: solid 5px #00FF7F; /* border colour!! */
     border-radius: 50%;
     animation: roll 1.5s ease-in-out infinite alternate;
     visibility: visible;
-  }
+}
 
-/* inner part */
-  .loader:after{
-    content:"";
+/* Inner part of loader */
+.loader:after {
+    content: "";
     position: absolute;
     inset: 10px;
     border-radius: 50%;
-    border: 5px solid ;
+    border: 5px solid;
     border-color: #ff3d00 transparent;
-  }
+}
 
-/* animation */
-  @keyframes roll {
+/* Loader animation */
+@keyframes roll {
     0% {
-      transform: translateX(-200%) rotate(0deg) ;
+        transform: translateX(-200%) rotate(0deg);
     }
     100% {
-      transform:  translateX(200%) rotate(360deg);
+        transform: translateX(200%) rotate(360deg);
     }
-  }
+}
 
-  div#loader {
+div#loader {
     display: none;
-    }
+}
 
-  div#content {
-    display: True;
-    }
+div#content {
+    display: block; /* Corrected 'True' to 'block' */
+}
