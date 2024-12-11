@@ -6,6 +6,10 @@
 <title>Birthday Card</title>
 <link rel="stylesheet" href="static/css/style_results.css">
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rock+3D&display=swap" rel="stylesheet">
+
 </head>
 <body>
 <div class="birthdayCard">
@@ -32,10 +36,13 @@
   <div class="cardInside">
     <p>Dear {{recievers_name}},</p>
     <p>{{chatbot_response}}</p>
-    <model-viewer src="static/models/{{ generated_model_name }}.glb" alt="Astronaut Model" 
-      ar ar-modes="webxr scene-viewer quick-look" camera-controls 
-      shadow-intensity="1" environment-image="neutral" poster="poster.jpg">
-    </model-viewer>
+    <div class="wrapper">
+          <model-viewer class="my_model_viewer" src="static/models/{{ generated_model_name }}.glb" alt="Astronaut Model" 
+          ar ar-modes="webxr scene-viewer quick-look" camera-controls 
+            shadow-intensity="1" environment-image="neutral" poster="poster.jpg">
+            </model-viewer>
+
+        </div>
     <p>Love {{senders_name}}</p>
   </div>
 </div>

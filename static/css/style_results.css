@@ -1,3 +1,5 @@
+
+/* style for entire page */
 body {
 display: flex;
 align-items: center;
@@ -6,6 +8,9 @@ height: 100vh;
 background-color: #f0f8ff;
 font-family: Arial, sans-serif;
 }
+
+
+/* styles for the birthday card container */
 
 .birthdayCard {
 position: relative;
@@ -17,21 +22,26 @@ transform: perspective(2500px);
 transition: transform 1s;
 }
 
+
+/* hover effect  */
 .birthdayCard:hover {
 transform: perspective(2500px) rotate(5deg);
 box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2),
   0 10px 100px rgba(0, 0, 0, 0.5);
 }
 
+/* the effect when it opens */
 .birthdayCard.open .cardFront {
 transform: rotateY(-160deg);
 transition-delay: 1s;
 }
 
+/* styles for the front of the card */
 .birthdayCard.open .happy {
 visibility: hidden;
 }
 
+/*style for card front*/
 .cardFront {
 position: relative;
 background-color: #fff;
@@ -44,11 +54,12 @@ box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2),
 transition: transform 0.6s;
 }
 
+
 .happy {
-font-family: 'Rubik Burned', sans-serif;
+font-family: "Rock 3D", cursive;
 text-align: center;
 margin: 30px;
-font-size: 2.6em;
+font-size: 1.5em;
 color: #ff6347;
 text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 letter-spacing: 2px;
@@ -157,7 +168,7 @@ opacity: 1;
 position: absolute;
 display: none;
 top: -15px;
-z-index: -2;
+z-index: 1;
 left: 50%;
 transform: translateX(-50%);
 }
@@ -171,7 +182,7 @@ position: absolute;
 background-color: #fee440;
 border-radius: 50%;
 top: -10px;
-z-index: -1;
+z-index: 1;
 animation: fire 0.6s ease-in-out infinite, color 0.4s linear infinite;
 }
 
@@ -349,13 +360,16 @@ font-size: 1.5em;
 color: #333;
 }
 
-#modelViewer {
-width: 100%;
-height: 100%;
-margin: 0;
-background-color: #ececec;
-display: block;
+.wrapper{
+width: 500px;
+height: 300px;
 }
+model-viewer{
+  height: 100%;
+  width: auto;
+}
+
+
 
 /* Confetti styles */
 .confetti {
@@ -363,10 +377,10 @@ position: absolute;
 width: 10px;
 height: 10px;
 background-color: #ffb300;
-border-radius: 50%;
+border-radius: 100%;
 animation: confetti 2s ease-in-out infinite;
 opacity: 0;
-z-index: 10;
+z-index: 100;
 }
 
 @keyframes confetti {

@@ -5,9 +5,10 @@
 Cardiverse is a platform for personalised greeting cards that utilises AI to create:
 
 - Custom 3D avatars
-- 
+- Custom poem about the reciever 
+- Semi Customisable theme
 
-The platform enables users to celebrate special occasions by sending personalised greeting cards as website links. It leverages AI-powered CSS customization to create unique and interactive experiences for recipients.
+The platform enables users to celebrate special occasions by sending personalised virtual greeting cards.
 
 ------
 

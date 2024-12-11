@@ -9,16 +9,18 @@ import json
 import datetime
 
 
-
+#setting up meshy api key 
 meshy_credentials = "meshy_keys.json"
 with open(meshy_credentials, "r") as meshy_keys:
     meshy_tokens = json.load(meshy_keys)
 
 api_key = meshy_tokens['Authorization']
 
+#creating main function to call most of other functions 
 def main(filename):
     print("main: ", filename)
     try:
+        #
         image_data = image_pathway(filename)
         task_id = create_task(image_data, api_key)
         task_details = wait_for_completion(task_id, api_key)

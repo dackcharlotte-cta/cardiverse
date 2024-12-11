@@ -11,6 +11,13 @@ body {
     text-align: center;  /* This is optional with flexbox */
 }
 
+.rock-3d-regular {
+  font-family: "Rock 3D", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 h1 {
     font-size: 3rem;
     text-transform: uppercase;
@@ -44,7 +51,7 @@ button {
 
 button:hover {
     background-color: #00FA9A;
-    transform: scale(1.05);  /* Slightly smaller scale for subtle effect */
+    transform: scale(1.05);  /*  */
 }
 
 a {
